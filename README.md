@@ -1,5 +1,3 @@
-![Jenkinsploit Framework](./jenkinsploit-logo.png)
-
 # Jenkinsploit Framework
 
 ## Overview
