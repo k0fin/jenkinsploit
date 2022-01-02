@@ -31,6 +31,19 @@ The Jenkinsploit Framework includes a broad list of features, including:
 
     jenkinsploit --help
 
+## To Do
+* Password spraying
+* log4j vulnerability detection for installed plugins
+* include current class methods as individual modules for extensibility and customization
+* Windows-specific payloads and support
+* Groovy payload generation and obfuscation
+* Job builder code execution fixes
+* Added support for full CI/CD pipeline environments
+* Node mapping and multi-instance takeover/command and control
+* Payloads for persistence methods
+
+
+
 ## Credits & References
 
 The following references were a huge help during the creation of the Jenkinsploit Framework. Thank you!
