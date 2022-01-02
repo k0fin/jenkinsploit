@@ -1,0 +1,106 @@
+#!/usr/bin/python3
+
+import sys
+import os
+import glob
+import random
+import re
+import netaddr
+import requests
+import json
+
+jsfconsole_COMMANDS = ["connect","session","load","search","show","analyze","login","shell"]
+
+def banner():
+
+    print('''______________________________________________________________________
+
+        ,               /      ,                      /         ,     
+------------__----__---/-__--------__---__------__---/----__------_/_-
+      /   /___) /   ) /(     /   /   ) (_ `   /   ) /   /   ) /   /   
+_____/___(___ _/___/_/___\__/___/___/_(__)___/___/_/___(___/_/___(_ __
+    /                                       /                         
+(_ /                                       /
+
+MMMMMMMMMMMMMMMMMMNdyyyhdNMMMMMMMMMMMMMM
+MMMMMMMMMMMMNhsys/.```````-+hMMMMMMMMMMM
+MMMMMMMMMMNo/so.`````````````:dMMMMMMMMM
+MMMMMMMMMNyssh````/oo.``````.oymMMMMMMMM
+MMMMMMMMm+ossh```o:..``````````.hMMMMMMM
+MMMMMMMMssyyy+````````/```:````//MMMMMMM
+MMMMMMmmdhhdh/``````-/+s``-s.-+y/NMMMMMM
+MMMMNhym/oooms``````.::-```-s+..:dhNMMMM
+MMMmysyd`+.:-.```````````````oy`+hyyNMMM    - Jenkins says: "You don't have to get ahold of all my files
+MMmysyyds-.-.```````````:/:/++/.hyyyyNMM                     from the file system to decrypt a password...
+MNysyyyyhhdy`````````-:+oyy/ss/odyyyyhNM                     you can do it right from the Groovy scripting
+Mdsyyyyyyyhm````/-```.++oo+/-.odyyyyyymM                     console like this!":
+Mhyyyyyyyyydy```.//-```--:--:yNdyyyyyydM    ...snip...
+Nyyyyyyyhddddh+---+yyo/::/sdmmhdmdyyyyhM
+MdyymmhhddddddddmmhyyyyddhhyyyNddmdyyymM
+MNyyhNhhddddddddddmyyyydo-/yoomddmyyyhNM println(hudson.util.Secret.decrypt("{AQAAABAAAAAQuQcUqG2huySf0GrDiswI0PkClk3pQ7xi33cW3a8pQN0=}"))
+MMmyydmyddddddmdddmmmo//y/:s:sddmhyyyNMM
+MMMmyyNhhdddddmydddmmyo+/h:syddmdyyhmMMM
+MMMMNhdmhddddmmhmmddddmmddmmmmmNhys::hMM    ...snip...
+MMMMMMmNydddddms+/::-----:dhmd-d`-:. .NM
+MMMMMMMNydddddm/         `ydmN`+-`:-` hM
+MMMMMMMMdddddddy         `sddN+syo+:./mM
+MMMMMMMMMNNmmddm`         +dmNMMMMNNNMMM
+MMMMMMMMMMMMMMNN/         /::MMMMMMMMMMM
+MMMMMMMMMMMMMMMMd         :/.NMMMMMMMMMM
+MMMMMMMMMMMMMMMMM+        .NNMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMNmhysssyhdMMMMMMMMMMMMM
+
+ ___________________________________________________________________
+
+ ==[ The Jenkins Exploitation Framework | v0.0.1 | Codename:INIT ]==
+
+
+- A framework for offensive security operators that is capable of discovering, analyzing, and attacking
+  Jenkins instances to execute arbitrary code, leak credentials, and exfiltrate secrets.
+
+~ written by k0fin
+~ https://github.com/k0fin/jenkinsploit
+~ <MEDIUM_BLOG_POST_URL>
+~ Dark Element or die
+ ___________________________________________________________________
+''')
+
+def jsfconsoleCLI():
+
+    banner()
+
+    while True:
+        prompt = "jsfconsole_ "
+        cmd = input(prompt)
+
+        if cmd == 'exit' or cmd == 'quit':
+            print("[+] Goodbye! :)")
+            sys.exit()
+
+        elif cmd == 'help':
+            print("Available commands: lorem ipsum dolor emet! :)")
+            print(jsfconsole_COMMANDS)
+
+        elif cmd.startswith("connect") and len(cmd.split()) == 2: # Connect to target instance and store cookies
+            print("[*] Creating connection to Jenkins target: {}".format(cmd.split()[1]))
+            c_req = requests.get(cmd.split()[1])
+
+            print(c_req.headers)
+            print(c_req.cookies)
+
+        elif cmd.startswith("shell") and len(cmd.split()) == 2: # Run shell command
+            c_req = os.system(" ".join(cmd.split()[1:]))
+
+        elif cmd.startswith("login") and len(cmd.split()) == 2 and len(cmd.split().pop().split(":")) == 2:
+
+            print("[*] Logging in to active Jenkins target: {}".format(target))
+            c_req = requests.get(cmd.split()[1])
+
+            print(c_req.content)
+            print(c_req.headers)
+
+        else:
+            print("\n")
+            print(cmd)
+
+jsfconsoleCLI()

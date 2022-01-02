@@ -1,0 +1,26 @@
+import com.cloudbees.plugins.credentials.*
+import com.cloudbees.plugins.credentials.common.*
+import com.cloudbees.plugins.credentials.domains.*
+import com.cloudbees.plugins.credentials.impl.*
+import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
+import org.jenkinsci.plugins.plaincredentials.impl.*
+
+  
+domain = Domain.global()
+store = SystemCredentialsProvider.getInstance().getStore()
+
+for (credential in store.getCredentials(domain)) {
+  if (credential instanceof UsernamePasswordCredentialsImpl) {
+    println credential.getId() + " " + credential.getUsername() + " " + credential.getPassword().getPlainText()
+  } else if (credential instanceof StringCredentialsImpl) {
+    println credential.getId() + " " + credential.getSecret().getPlainText() 
+  } else if(credential instanceof BasicSSHUserPrivateKey) {
+    println credential.getId() + " " + credential.getUsername() + "\n" + credential.getPrivateKey()
+  } else if (credential.getClass().toString() == "class com.microsoft.azure.util.AzureCredentials") {
+    println "AzureCred:" + credential.getSubscriptionId() + " " + credential.getClientId() + " " + credential.getPlainClientSecret() + " " + credential.getTenant()
+  } else if (credential.getClass().toString() == "class org.jenkinsci.plugins.github_branch_source.GitHubAppCredentials") {
+    println credential.getId() + " " + credential.getUsername() + "\n" + credential.getPrivateKey().getPlainText()
+  } else {
+    println credential.getClass()
+  } 
+}

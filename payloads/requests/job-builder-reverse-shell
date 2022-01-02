@@ -1,0 +1,16 @@
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
+Accept: text/javascript, text/html, application/xml, text/xml, */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:8080/job/testbuild/ws/
+X-Requested-With: XMLHttpRequest
+X-Prototype-Version: 1.7
+Content-type: application/x-www-form-urlencoded; charset=UTF-8
+Jenkins-Crumb: dbf6d64600f2f044992dd8508cbba8650f50026786e19a6f08e5c36188fe3071
+Content-Length: 0
+Origin: http://localhost:8080
+Connection: keep-alive
+Cookie: iconSize=24x24; JSESSIONID.d4a48bb5=node015l7behwezzy9dda0608k82kv1.node0; screenResolution=1918x888
+
+delay=0sec

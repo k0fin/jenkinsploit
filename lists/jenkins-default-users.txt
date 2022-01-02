@@ -1,0 +1,7 @@
+jenkins
+admin
+superuser
+system
+jetty
+anonymous
+global

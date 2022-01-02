@@ -1,0 +1,1 @@
+java -jar jenkins-cli.jar -s http://localhost:8080/ -webSocket get-credentials-as-xml "system::system::jenkins" "(global)" "1"

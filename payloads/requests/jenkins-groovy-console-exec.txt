@@ -1,0 +1,15 @@
+POST /script HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:8080/script
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 376
+Origin: http://localhost:8080
+Connection: keep-alive
+Cookie: iconSize=24x24; JSESSIONID.10f2b614=node0fvmr7oy70zdx14r9bw1q2z3nt147.node0; screenResolution=1918x888
+Upgrade-Insecure-Requests: 1
+
+script=println%28%22ls+-l%22.execute%28%29.text%29&Jenkins-Crumb=66fec2c69928b442267f76aac99e3c86fc27b90eb73476c185b7103f51768382&json=%7B%22script%22%3A+%22println%28%5C%22ls+-l%5C%22.execute%28%29.text%29%22%2C+%22%22%3A+%22%5C%22ls+-l%5C%22.execute%28%29.text%22%2C+%22Jenkins-Crumb%22%3A+%2266fec2c69928b442267f76aac99e3c86fc27b90eb73476c185b7103f51768382%22%7D&Submit=Run

