@@ -54,3 +54,7 @@ The following references were a huge help during the creation of the Jenkinsploi
 * gquere
 
     https://github.com/gquere/pwn_jenkins
+
+* dennyzhang
+
+    https://github.com/dennyzhang/cheatsheet-jenkins-groovy-A4
