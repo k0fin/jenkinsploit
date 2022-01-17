@@ -83,7 +83,7 @@ capabilities_list.append("securityRealm")
 
 script_list = []
 TARGET_URL = None
-JENKINSPLOIT_MODULES = glob.glob("/home/kali/jenkinsploit-framework/modules/*")
+JENKINSPLOIT_MODULES = glob.glob("/home/kali/jenkinsploit/modules/*")
 
 class ColorOut:
 
@@ -402,7 +402,7 @@ def jenkins_groovy_reverse_shell(handler,lport,target,rport):
 
 def jenkinsploit_banner():
     '''Print the Jenkinsploit command-line banner'''
-    banner_file = random.choice(glob.glob("/home/kali/jenkinsploit-framework/banners/*"))
+    banner_file = random.choice(glob.glob("/home/kali/jenkinsploit/banners/*"))
 
     with open(banner_file, "r") as b_file:
         print(b_file.read())
@@ -753,7 +753,7 @@ class JenkinsploitSessionHandler:
 
 def main():
     '''Jenkinsploit main()'''
-    parser = ArgumentParser(description="jenkinsploit-framework v0.0.1-pre-alpha | The Jenkins Exploitation Framework | written by k0fin the hack3r ( @k0fin ) | 2021")
+    parser = ArgumentParser(description="jenkinsploit v0.0.1-pre-alpha | The Jenkins Exploitation Framework | written by k0fin the hack3r ( @k0fin ) | 2021")
 
     # Main arguments
     parser.add_argument("url", help="Target Jenkins instance URL (e.g. http://localhost:8080)")
