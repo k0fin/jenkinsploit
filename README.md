@@ -1,12 +1,12 @@
-# Jenkinsploit Framework
+# Jenkinsploit
 
 ## Overview
 
-Jenkinsploit is an attack and exploitation framework tailored toward Jenkins. It was written to provide a single solution for offensive security professionals to quickly map, enumerate, and attack misconfigured Jenkins instances.
+Jenkinsploit is an attack and exploitation toolkit tailored toward Jenkins. It was written to provide a single solution for offensive security professionals to quickly map, enumerate, and attack misconfigured Jenkins instances.
 
 ## Features
 
-The Jenkinsploit Framework includes a broad list of features, including:
+Jenkinsploit includes a broad list of features, including:
 
  - Fingerprinting of Jenkins software stack and version
  - Privilege level and access evaluation
@@ -22,8 +22,8 @@ The Jenkinsploit Framework includes a broad list of features, including:
 
 ## Installation & Usage
 
-    git clone https://github.com/k0fin/jenkinsploit-framework.git
-    cd jenkinsploit-framework
+    git clone https://github.com/k0fin/jenkinsploit.git
+    cd jenkinsploit
     python3 -m pip install -r requirements.txt
     sudo python3 ./setup.py install
 
@@ -44,7 +44,7 @@ The Jenkinsploit Framework includes a broad list of features, including:
 
 ## Credits & References
 
-The following references were a huge help during the creation of the Jenkinsploit Framework. Thank you!
+The following references were a huge help during the creation of Jenkinsploit. Thank you!
 
 * Orange Tsai
 
