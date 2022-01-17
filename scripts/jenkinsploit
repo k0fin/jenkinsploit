@@ -582,6 +582,16 @@ class JenkinsploitSessionHandler:
 
         return self.session
 
+    def getSSHEndpoint(self, method=None):
+
+        fingerprint_req = self.session.get("http://{}:{}".format(self.h,self.p))
+        fingerprint_soup = BeautifulSoup(fingerprint_req.text, "html.parser")
+
+        print(fingerprint_req.headers['X-SSH-Endpoint'])
+        print("\n")
+
+        return self.session
+
     def getCurrentUser(self):
 
         whoami_req = self.session.get("http://{}:{}/me/api/json".format(self.h,self.p))
@@ -775,6 +785,7 @@ def main():
 
     # Attack arguments
     parser.add_argument("--signup", action="store_true", help="Check /signup endpoint accessibility")
+    parser.add_argument("--ssh-endpoint", action="store_true", help="Get SSH endpoint address/port from response headers")
     parser.add_argument("--capabilities", action="store_true", help="Get capabilities")
     parser.add_argument("--fingerprint", action="store_true", help="Fingerprint a target Jenkins instance", default=False)
     parser.add_argument("--opensearch", action="store_true", help="Run OpenSearch test against a target Jenkins instance", default=False)
