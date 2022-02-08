@@ -3,6 +3,7 @@
 ## Overview
 
 Jenkinsploit is an attack and exploitation toolkit tailored toward Jenkins. It was written to provide a single solution for offensive security professionals to quickly map, enumerate, and attack misconfigured Jenkins instances.
+Currently, only Linux targets are supported. Windows-specific payloads, TTP's, and obfuscation are currently being developed.
 
 ## Features
 
@@ -20,7 +21,7 @@ Jenkinsploit includes a broad list of features, including:
  - Security warning detection and vulnerability parsing
  - Jenkins outdated version detection
 
-## Installation & Usage
+## Installation
 
     git clone https://github.com/k0fin/jenkinsploit.git
     cd jenkinsploit
@@ -29,7 +30,16 @@ Jenkinsploit includes a broad list of features, including:
 
     jenkinsploit --help
 
+## Usage
+
+* Authentication
+* Discovery
+* Detections
+* Attacks
+* Utilities
+
 ## To Do
+
 * Password spraying
 * log4j vulnerability detection for installed plugins
 * include current class methods as individual modules for extensibility and customization

