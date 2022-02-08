@@ -56,15 +56,27 @@ Jenkinsploit includes a broad list of features, including:
 
 The following references were a huge help during the creation of Jenkinsploit. Thank you!
 
-* Orange Tsai
+* Jenkins vulnerabilities and exploits
+
+Credits to Orange Tsai!
 
     https://blog.orange.tw/2019/01/hacking-jenkins-part-1-play-with-dynamic-routing.html
     https://blog.orange.tw/2019/02/abusing-meta-programming-for-unauthenticated-rce.html
 
-* gquere
+* Scripted attack methods for Jenkins illustrating common vulnerabilities
+
+Credits to gquere!
 
     https://github.com/gquere/pwn_jenkins
 
-* dennyzhang
+* Jenkinsploit Groovy payloads and scripting console methods
+
+Credits to dennyzhang!
 
     https://github.com/dennyzhang/cheatsheet-jenkins-groovy-A4
+
+* ASCII Art
+
+Credits to patorjk!
+
+    https://patorjk.com/software/taag/#p=testall&f=Graffiti&t=

